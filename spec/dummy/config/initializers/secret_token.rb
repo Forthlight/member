@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Dummy::Application.config.secret_key_base = 'ef2fe4251f85aa9747316d73597f5c77aa0a8b31a8d19d67e78bc6678b98a8be437edcc1b079eba873444d9cc344c7bee13f831e7c305ba2cf9b7ff7e7a98dd4'
+Dummy::Application.config.secret_key_base = '97253a437375dd03064772c68191efc6f2bf96629e08ddc995d812711ab8e2ead17ede5f2026ceb3fe6e39c074a6bf499104ad0731be85485758f031beba1e12'
