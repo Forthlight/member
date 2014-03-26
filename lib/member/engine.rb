@@ -1,3 +1,6 @@
+require 'devise'
+require 'simple_roles'
+
 module Member
   class Engine < ::Rails::Engine
     isolate_namespace Member

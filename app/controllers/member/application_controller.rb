@@ -3,7 +3,6 @@ module Member
     before_filter :authenticate_user!
     before_filter :configure_permitted_parameters, if: :devise_controller?
 
-
     protected
 
     # Adding custom fields to devise
@@ -13,9 +12,8 @@ module Member
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password) }
     end
 
-    # Route to this path after successful login
-    def after_sign_in_path_for(user) 
-      member.profiles_index_path
+    def after_sign_out_path_for(user) 
+      main_app.root_path
     end
   end
 end
