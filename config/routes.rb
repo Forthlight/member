@@ -5,6 +5,8 @@ Member::Engine.routes.draw do
     :controllers => { :sessions => "member/sessions" }
   }
 
+  resources :publications
+  
   get "profiles/index"
   
   root "profiles#index"
