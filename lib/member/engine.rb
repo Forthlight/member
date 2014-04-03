@@ -1,4 +1,3 @@
-require 'devise'
 require 'simple_roles'
 
 module Member
