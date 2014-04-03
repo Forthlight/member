@@ -1,9 +1,7 @@
-#require_dependency "member/application_controller"
+require_dependency "member/application_controller"
 
 module Member
-  class PublicationsController < Article::PublicationsController
-    before_action :authenticate_user!
-
+  class PublicationsController < ApplicationController
     def index
       @publications = Article::Publication.where(author: current_user.id)
     end
