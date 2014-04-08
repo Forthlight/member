@@ -44,9 +44,9 @@ module Member
         @publication = Article::Publication.where(author: current_user.id).find(params[:id])
       
         unless @publication.destroy
-          redirect_to(administration.article_types_path, notice: "An error occured, the deletion was not successful")
+          redirect_to(member.publications_path, notice: "An error occured, the deletion was not successful")
         else
-          redirect_to(administration.article_types_path, notice: "An article was deleted")
+          redirect_to(member.publications_path, notice: "An article was deleted")
         end
       end
     end
