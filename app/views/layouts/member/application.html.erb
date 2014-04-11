@@ -7,12 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<!-- Alerts and notices appear here, temporarily (?) -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+	<%= render '../../../forthlight/app/shared/navbar' %>
+	<%= yield %>
 </body>
 </html>
