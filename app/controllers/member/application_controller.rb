@@ -1,5 +1,6 @@
 module Member
-  class ApplicationController < ActionController::Base
+  class Member::ApplicationController < ApplicationController
     before_filter :authenticate_user!
+    
   end
 end
