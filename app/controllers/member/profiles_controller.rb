@@ -10,10 +10,12 @@ module Member
     end
 
     def show
-      if params[:id] == current_user.id
+      if current_user.id == params[:id].to_i
         redirect_to member.profiles_path
       else
         @user = Member::User.find(params[:id])
+        @pub_count = Article::Publication.where(author: @user.id).count
+        @publications = Article::Publication.where(author: @user.id)
       end
     end
   end

@@ -1,7 +1,5 @@
 Member::Engine.routes.draw do
-  resources :publications
-  
-  get "profiles/index"
-  
+  resources :publications, :profiles
+
   root "profiles#index"
 end

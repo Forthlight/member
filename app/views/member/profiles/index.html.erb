@@ -2,12 +2,13 @@
 	<div class="span3">
 		<div class="member-head">
 			<h2><%= @user.first_name + " " + @user.last_name %></h2>
-			<h3><%= @user.role %> <!-- på ett finare sätt, om alls? --><h3>
+			<h3><%= @user.role.capitalize %> <!-- på ett finare sätt, om alls? --><h3>
 		</div>
+
 		<div class="member-info">
 			<ul>
-				<li>				
-					<b>Articles</b> <span style="float:right;"><%= @pub_count %></span>
+				<li>
+					<b>Articles (inline style ska bort va? ;) )</b> <span style="float:right;"><%= @pub_count %></span>
 				</li>
 				<li>
 					<b>Subscribers</b> <span style="float:right;">17</span>
@@ -17,45 +18,36 @@
 				</li>
 			</ul>
 		</div>
+		<div class="member-info hidden-phone">
+			<%= link_to "Edit account", auth.edit_user_registration_path(current_user.id) %><br>
+			[Tracker here]<br>
+			[Tracker here]<br>
+			[Tracker here]<br>
+			[Tracker here]<br>
+			[Tracker here]<br>
+			[Tracker here]<br><br>
 
-			<div class="member-connect">
-				<div class="row-fluid">
-					<a href="#" class="mock-btn">Subscribe</a>
-					<a href="#" class="mock-btn">Contact</a>
-				</div>
-			</div>
-			
-			<div class="member-info hidden-phone">
-				People who subscribe to David also subscribed to:<br>
-				[Tracker here]<br>
-				[Tracker here]<br>
-				[Tracker here]<br>
-				[Tracker here]<br>
-				[Tracker here]<br>
-				[Tracker here]<br>
-				[Tracker here]<br><br>
-
-				[Advertisement here]<br>
-				[Advertisement here]<br>
-			</div>
+			[Advertisement here]<br>
+			[Advertisement here]<br>
 		</div>
+	</div>
 
-		<div class="span9">
-			<div class="catalog-head">
-				<h3>My articles - Sort by: Date | Alphabetical | Rating | Category</h3>
-			</div>
-			<div class="catalog">
-				<div class="row-fluid"> 
-					<% @publications.each do |article| %>
-						<div class="span4 article-thumb">
-							<div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
-							<div class="thumb-body">
-								<p><%= truncate_to_paragraph(article.content) %></p>
-							</div>
-							<div class="thumb-foot">Read full article</div>
+	<div class="span9">
+		<div class="catalog-head">
+			<h3>My articles - Sort by: Date | Alphabetical | Rating | Category</h3>
+		</div>
+		<div class="catalog">
+			<div class="row-fluid"> 
+				<% @publications.each do |article| %>
+					<div class="span4 article-thumb">
+						<div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
+						<div class="thumb-body">
+							<p><%= truncate_to_paragraph(article.content) %></p>
 						</div>
-					<% end %>
-				</div>
+						<div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
+</div>
