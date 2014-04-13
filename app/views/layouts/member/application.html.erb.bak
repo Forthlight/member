@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Member</title>
-  <%= stylesheet_link_tag    "member/application", media: "all" %>
-  <%= javascript_include_tag "member/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<%= render '../../../forthlight/app/shared/navbar' %>
-	<%= yield %>
-</body>
+	<head>
+	  <title>Member</title>
+	  <%= stylesheet_link_tag    "member/application", media: "all" %>
+	  <%= javascript_include_tag "member/application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<%= render :file => "#{Rails.root}/app/views/shared/_navbar.html.erb" %>
+		<%= yield %>
+	</body>
 </html>
