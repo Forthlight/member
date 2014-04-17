@@ -1,3 +1,5 @@
+<%= tinymce_assets %>
+<div class="composer">
 <%= form_for(@publication) do |f| %>
 <%= tinymce %>
 
@@ -13,30 +15,34 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :title%>
-    <%= f.text_field :title %>
+<div class="row-fluid overhead">
+  <div class="span3">
+        <%= f.label :title%>
+    <%= f.text_field :title, :required => true %>
   </div>
+
+  <div class="span3">
+        <%= f.label :type%>
+    <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose Type'}) %>
+  </div>
+
+  <div class="span3">
+      <%= f.label :category%>
+    <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose Category'}) %>
+  </div>
+  <div class="span3">
+        <%= f.label :published%>
+    <%= f.check_box :published %>
+  </div>
+</div>
 
   <div>
     <%= f.text_area :content, :class => "tinymce", size: '100x20' %>
   </div>
 
   <div>
-    <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose Type'}) %>
-  </div>
-
-  <div>
-    <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose Category'}) %>
-  </div>
-
-  <div>
-    <%= f.label :published%>
-    <%= f.check_box :published %>
-  </div>
-
-  <div>
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", :class=>"mock-btn" %>
   </div>
   
 <% end %>
+</div>
