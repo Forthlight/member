@@ -6,7 +6,7 @@ module Member
     def index
       @user = current_user
       @pub_count = Article::Publication.where(author: current_user.id).count
-      @publications = Article::Publication.where(author: current_user.id)
+      @publications = Article::Publication.where(author: current_user.id).page(params[:page]).per(9)
     end
 
     def show
@@ -15,7 +15,7 @@ module Member
       else
         @user = Member::User.find(params[:id])
         @pub_count = Article::Publication.where(author: @user.id).count
-        @publications = Article::Publication.where(author: @user.id)
+        @publications = Article::Publication.where(author: @user.id).page(params[:page]).per(9)
       end
     end
   end

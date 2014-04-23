@@ -1,26 +1,23 @@
 <div class="row-fluid">
   <div class="span3">
     <div class="side-head">
-      <h1>
-        <div class="avatar">
-        <% if @user.role == :research %> 
-        <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-
-        <% elsif @user.role == :business %>
-        <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-        
-        <% else %>
-        <%= image_tag("user.png", size: "32x32", alt: "User") %>
-
-        <% end %>
-      </div>
-      <div class="avatar">
-        <%= @user.first_name + " " + @user.last_name %>
-      </div>
-      </h1>
+      <h1><%= @user.first_name + " " + @user.last_name %></h1>
     </div>
 
     <div class="side-info">
+      <div class="avatar">
+        <% if @user.role == :research %> 
+          <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+          <h2>Researcher</h2>
+        <% elsif @user.role == :business %>
+          <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+          <h2>Business user</h2>
+        <% else %>
+          <%= image_tag("user.png", size: "32x32", alt: "User") %>
+          <h2>User</h2>
+        <% end %>
+      </div>
+
       <ul>
         <li>        
           <b>Articles</b> <span><%= @pub_count %></span>
@@ -30,6 +27,7 @@
         </li>
       </ul>
     </div>
+
     <div class="side-info hidden-phone">
       People who subscribe to <%= @user.first_name %> also subscribed to:<br>
       [Tracker here]<br>
@@ -44,6 +42,7 @@
       [Advertisement here]<br>
     </div>
   </div>
+  
   <div class="span9">
     <div class="catalog-head">
       <h3>Articles</h3>
@@ -59,6 +58,8 @@
           <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
         </div>
         <% end %>
+
+        <%= paginate @publications, :remote => false %>
       </div>
     </div>
   </div>

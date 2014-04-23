@@ -1,32 +1,30 @@
 <div class="row-fluid">
 	<div class="span9">
 		<div class="side-head">
-
-			<h1> <%= @publication.title %></h1>
-
+			<h1><%= @publication.title %></h1>
 		</div>
 		<div class="catalog">
-			<%= simple_format @publication.content %>
-      <br>
-      <i>Tags:<%= @publication.type.title %> <%= @publication.category.title %></i>
+			<div>
+				<%=raw @publication.content %>
+			</div>
 		</div>
 	</div>
 
 	<div class="span3">
 		<div class="side-head hidden-phone">
-			<h3>Post by <%= @publication.author %></h3>
-			<i>Posted <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+			<h3>Authored by <%= find_author_name(@publication.author) %></h3>
+			<i>Published <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+			<p>
+				<i><%= @publication.category.title %></i> - 
+	      <i><%= @publication.type.title %></i> - 
+	      <i><%= @publication.cluster_category.title %></i>
+	    </p>
 		</div>
 		<div class="side-info hidden-phone">
 			<ul>
-				<% if admin_signed_in? %>
-				<li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
-				<li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
-
-				<%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-				<% else %>
-				something useful
-				<% end %>
+				<li><%= link_to 'Edit this article', member.edit_publication_path(@publication) %></li>
+				<li><%= link_to 'Delete this article', @publication, confirm: 'Are you sure?', :method => :delete %></li>
+				<%= render :file => "#{Member::Engine.root}/app/views/shared/_compose.html.erb" %>
 			</ul>
 		</div>
 	</div>

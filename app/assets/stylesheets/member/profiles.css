@@ -20,3 +20,8 @@
   display: inline-block;
   margin:auto;
 }
+
+.avatar h2, img{
+  display: inline;
+  margin-right: 10px;
+}

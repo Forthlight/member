@@ -1,70 +1,72 @@
 <div class="row-fluid">
 	<div class="span3">
     <div class="side-head">
-      <h1>
-
-        <% if @user.role == :research %> 
-        <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-
-        <% elsif @user.role == :business %>
-        <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-        
-        <% else %>
-        <%= image_tag("user.png", size: "32x32", alt: "User") %>
-
-        <% end %>
-
-      <div class="avatar">
-        <%= @user.first_name + " " + @user.last_name %>
-      </div>
-      </h1>
+      <h1><%= @user.first_name + " " + @user.last_name %></h1>
     </div>
 
-
     <div class="side-info">
-      <h3>About me</h3>
-       <%= @user.description %>
-     <ul>
-      <li>
-       <b>Articles</b> <span><%= @pub_count %></span>
-     </li>
-     <li>
-       <b>Subscribers</b> <span>17</span>
-     </li>
-   </ul>
-   
-   <ul>
-     <li><%= link_to "Edit account", auth.edit_user_registration_path(current_user.id) %></li>
-     <li><%= link_to "Write article", member.new_publication_path %></li>
-   </ul>
-   <br>
- </div>
- <div class="side-info hidden-phone">
-   [Tracker here]<br>
-   [Tracker here]<br>
-   [Tracker here]<br>
-   [Tracker here]<br>
-   [Tracker here]<br>
-   [Tracker here]<br><br>
- </div>
-</div>
+      <div class="avatar">
+        <% if @user.role == :research %> 
+          <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+          <h2>Researcher</h2>
+        <% elsif @user.role == :business %>
+          <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+          <h2>Business user</h2>
+        <% else %>
+          <%= image_tag("user.png", size: "32x32", alt: "User") %>
+          <h2>User</h2>
+        <% end %>
+      </div>
 
-<div class="span9">
-  <div class="catalog-head">
-   <h3>My articles</h3>
- </div>
- <div class="catalog">
-   <div class="row-fluid"> 
-    <% @publications.each do |article| %>
-    <div class="span4 article-thumb">
-      <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
-      <div class="thumb-body">
-       <p><%= truncate_to_paragraph(article.content) %></p>
-     </div>
-     <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
-   </div>
-   <% end %>
- </div>
-</div>
-</div>
+      <h3>About me</h3>
+      <% if @user.description.blank? %> 
+        <p>-- no information added yet --</p>
+      <% else %>
+        <p><%= @user.description %></p>
+      <% end %>  
+      <ul>
+        <li>
+          <b>Articles</b> <span><%= @pub_count %></span>
+        </li>
+        <li>
+          <b>Subscribers</b> <span>17</span>
+        </li>
+      </ul>
+       
+      <ul>
+        <li><%= link_to "Edit account", auth.edit_user_registration_path(current_user.id) %></li>
+        <li><%= link_to "Write article", member.new_publication_path %></li>
+      </ul>
+      <br>
+    </div>
+    <div class="side-info hidden-phone">
+      [Tracker here]<br>
+      [Tracker here]<br>
+      [Tracker here]<br>
+      [Tracker here]<br>
+      [Tracker here]<br>
+      [Tracker here]<br><br>
+    </div>
+  </div>
+
+  <div class="span9">
+    <div class="catalog-head">
+      <h3>My articles</h3>
+    </div>
+    <div class="catalog">
+      <div class="row-fluid"> 
+        <% @publications.each do |article| %>
+          <div class="span4 article-thumb">
+            <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
+            <div class="thumb-body">
+              <p><%= truncate_to_paragraph(article.content) %></p>
+            </div>
+            <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
+          </div>
+        <% end %>
+
+        <%= paginate @publications, :remote => false %>
+      </div>
+    </div>
+  </div>
 </div>
