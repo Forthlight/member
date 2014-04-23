@@ -1,7 +1,8 @@
 <div class="row-fluid">
   <div class="span3">
-    <div class="member-head">
+    <div class="side-head">
       <h1>
+        <div class="avatar">
         <% if @user.role == :research %> 
         <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
 
@@ -12,12 +13,14 @@
         <%= image_tag("user.png", size: "32x32", alt: "User") %>
 
         <% end %>
-
+      </div>
+      <div class="avatar">
         <%= @user.first_name + " " + @user.last_name %>
+      </div>
       </h1>
     </div>
 
-    <div class="member-info">
+    <div class="side-info">
       <ul>
         <li>        
           <b>Articles</b> <span><%= @pub_count %></span>
@@ -27,7 +30,7 @@
         </li>
       </ul>
     </div>
-    <div class="member-info hidden-phone">
+    <div class="side-info hidden-phone">
       People who subscribe to <%= @user.first_name %> also subscribed to:<br>
       [Tracker here]<br>
       [Tracker here]<br>

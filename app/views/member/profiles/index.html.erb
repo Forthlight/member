@@ -1,23 +1,29 @@
 <div class="row-fluid">
 	<div class="span3">
-		<div class="member-head">
-			<h1>
+    <div class="side-head">
+      <h1>
+
         <% if @user.role == :research %> 
         <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
 
         <% elsif @user.role == :business %>
         <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-
+        
         <% else %>
         <%= image_tag("user.png", size: "32x32", alt: "User") %>
 
         <% end %>
 
+      <div class="avatar">
         <%= @user.first_name + " " + @user.last_name %>
+      </div>
       </h1>
     </div>
 
-    <div class="member-info">
+
+    <div class="side-info">
+      <h3>About me</h3>
+       <%= @user.description %>
      <ul>
       <li>
        <b>Articles</b> <span><%= @pub_count %></span>
@@ -33,16 +39,13 @@
    </ul>
    <br>
  </div>
- <div class="member-info hidden-phone">
+ <div class="side-info hidden-phone">
    [Tracker here]<br>
    [Tracker here]<br>
    [Tracker here]<br>
    [Tracker here]<br>
    [Tracker here]<br>
    [Tracker here]<br><br>
-
-   [Advertisement here]<br>
-   [Advertisement here]<br>
  </div>
 </div>
 

@@ -2,49 +2,6 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
-
-.member-head {
-  background: #da5838;
-  padding-top:5px;
-  padding-bottom:5px;
-  padding-left:10px;
-  color:#fff;
-}
-
-.member-info {
-  background: white;
-  padding:15px;
-}
-
-.member-info ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.member-info li {
-border-bottom: 1px solid #efefef;
-padding-top: 5px;
-}
-
-.member-info span {
-  float: right;
-}
-
-.catalog-head {
-  background: #da5838;
-  padding:15px;
-  color:#fff;
-}
-
-.catalog .row-fluid [class*="span"] {
-    margin-left: 0!important;
-}
-
-.catalog {
-  background: white;
-  padding: 10px;
-}
-
 .article-thumb {
   background: #efefef;
   height:33%;
@@ -57,4 +14,9 @@ padding-top: 5px;
   font-weight: bold;
 }
 
-.thumb-foot{}
+.avatar {
+  text-align: left;
+  width:80%;
+  display: inline-block;
+  margin:auto;
+}

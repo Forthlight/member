@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <title>Member</title>
-	  <%= stylesheet_link_tag "member/application", media: "all" %>
-	  <%= javascript_include_tag "member/application" %>
-	  <%= csrf_meta_tags %>
-	</head>
-	<body>
-		<%= render :file => "#{Rails.root}/app/views/shared/_navbar.html.erb" %>
+<head>
+	<title>Member</title>
+	<%= stylesheet_link_tag "member/application", media: "all" %>
+	<%= javascript_include_tag "member/application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<%= render :file => "#{Rails.root}/app/views/shared/_navbar.html.erb" %>
+	<div class="foot-wrapper">
 		<%= yield %>
-	</body>
+		<div class="push hidden-phone"></div>
+	</div>
+	<%= render :file => "#{Rails.root}/app/views/shared/_footer.html.erb" %>
+</body>
 </html>
