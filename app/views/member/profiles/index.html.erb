@@ -22,7 +22,7 @@
       <% if @user.description.blank? %> 
         <p>-- no information added yet --</p>
       <% else %>
-        <p><%= @user.description %></p>
+        <p><%= simple_format @user.description %></p>
       <% end %>  
       <ul>
         <li>

@@ -7,16 +7,31 @@
     <div class="side-info">
       <div class="avatar">
         <% if @user.role == :research %> 
-          <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-          <h2>Researcher</h2>
+        <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+        <h2>Researcher</h2>
         <% elsif @user.role == :business %>
-          <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-          <h2>Business user</h2>
+        <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+        <h2>Business user</h2>
         <% else %>
-          <%= image_tag("user.png", size: "32x32", alt: "User") %>
-          <h2>User</h2>
+        <%= image_tag("user.png", size: "32x32", alt: "User") %>
+        <h2>User</h2>
         <% end %>
       </div>
+
+      <h3>About me</h3>
+      <% if @user.description.blank? %> 
+      <p>-- no information added yet --</p>
+      <% else %>
+      <p><%= simple_format @user.description %></p>
+      <% end %>  
+      <ul>
+        <li>
+          <b>Articles</b> <span><%= @pub_count %></span>
+        </li>
+        <li>
+          <b>Subscribers</b> <span>17</span>
+        </li>
+      </ul>
 
       <ul>
         <li>        
