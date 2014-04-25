@@ -22,6 +22,7 @@
 		</div>
 		<div class="side-info hidden-phone">
 			<ul>
+				<li>This article has been useful to <%= @publication.rating ? @publication.rating : 0 %> people so far</li>
 				<li><%= link_to 'Edit this article', member.edit_publication_path(@publication) %></li>
 				<li><%= link_to 'Delete this article', @publication, confirm: 'Are you sure?', :method => :delete %></li>
 				<%= render :file => "#{Member::Engine.root}/app/views/shared/_compose.html.erb" %>
