@@ -7,54 +7,33 @@
     <div class="side-info">
       <div class="avatar">
         <% if @user.role == :research %> 
-        <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
-        <h2>Researcher</h2>
+          <%= image_tag("book.png", size: "32x32", alt: "Researcher") %>
+          <h2>Researcher</h2>
         <% elsif @user.role == :business %>
-        <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
-        <h2>Business user</h2>
+          <%= image_tag("suitcase.png", size: "32x32", alt: "Business") %>
+          <h2>Business user</h2>
         <% else %>
-        <%= image_tag("user.png", size: "32x32", alt: "User") %>
-        <h2>User</h2>
+          <%= image_tag("user.png", size: "32x32", alt: "User") %>
+          <h2>User</h2>
         <% end %>
       </div>
 
       <h3>About me</h3>
       <% if @user.description.blank? %> 
-      <p>-- no information added yet --</p>
+        <p>-- no information added yet --</p>
       <% else %>
-      <p><%= simple_format @user.description %></p>
-      <% end %>  
+        <p><%= simple_format @user.description %></p>
+      <% end %>
+        
       <ul>
         <li>
           <b>Articles</b> <span><%= @pub_count %></span>
-        </li>
-        <li>
-          <b>Subscribers</b> <span>17</span>
-        </li>
-      </ul>
-
-      <ul>
-        <li>        
-          <b>Articles</b> <span><%= @pub_count %></span>
-        </li>
-        <li>
-          <b>Subscribers</b> <span>17</span>
         </li>
       </ul>
     </div>
 
     <div class="side-info hidden-phone">
-      People who subscribe to <%= @user.first_name %> also subscribed to:<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br><br>
-
-      [Advertisement here]<br>
-      [Advertisement here]<br>
+      <!-- no content added yet -->
     </div>
   </div>
   
@@ -63,18 +42,22 @@
       <h3>Articles</h3>
     </div>
     <div class="catalog">
-      <div class="row-fluid"> 
-        <% @publications.each do |article| %>
-        <div class="span4 article-thumb">
-          <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
-          <div class="thumb-body">
-            <p><%= truncate_to_paragraph(article.content) %></p>
+      <div class="row-fluid">
+        <% if @publications.size > 0 %>
+          <% @publications.each do |article| %>
+          <div class="span4 article-thumb">
+            <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
+            <div class="thumb-body">
+              <p><%= truncate_to_paragraph(article.content) %></p>
+            </div>
+            <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
           </div>
-          <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
-        </div>
-        <% end %>
+          <% end %>
 
-        <%= paginate @publications, :remote => false %>
+          <%= paginate @publications, :remote => false %>
+        <% else %> 
+          <h3>This user has not published any articles!</h3>
+        <% end %> 
       </div>
     </div>
   </div>

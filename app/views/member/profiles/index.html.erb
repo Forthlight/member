@@ -20,32 +20,24 @@
 
       <h3>About me</h3>
       <% if @user.description.blank? %> 
-        <p>-- no information added yet --</p>
+        <p>-- no description added yet --</p>
       <% else %>
         <p><%= simple_format @user.description %></p>
       <% end %>  
+      
       <ul>
-        <li>
-          <b>Articles</b> <span><%= @pub_count %></span>
-        </li>
-        <li>
-          <b>Subscribers</b> <span>17</span>
-        </li>
+        <li><b>Articles</b> <span><%= @pub_count %></span></li>
+        <li><%= link_to "Write new article", member.new_publication_path %></li>
       </ul>
-       
+
       <ul>
+        <li><b>Account</b></li>
         <li><%= link_to "Edit account", auth.edit_user_registration_path(current_user.id) %></li>
-        <li><%= link_to "Write article", member.new_publication_path %></li>
       </ul>
-      <br>
     </div>
+
     <div class="side-info hidden-phone">
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br><br>
+      <!-- no content added yet -->
     </div>
   </div>
 
@@ -56,7 +48,8 @@
     <div class="catalog">
       <%= link_to "Write article", member.new_publication_path, :class => "mock-btn" %>
       <div class="row-fluid"> 
-        <% @publications.each do |article| %>
+        <% if @publications.size > 0 %>
+          <% @publications.each do |article| %>
           <div class="span4 article-thumb">
             <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
             <div class="thumb-body">
@@ -64,9 +57,12 @@
             </div>
             <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
           </div>
-        <% end %>
+          <% end %>
 
-        <%= paginate @publications, :remote => false %>
+          <%= paginate @publications, :remote => false %>
+        <% else %> 
+          <h3>You have not written any articles yet!</h3>
+        <% end %> 
       </div>
     </div>
   </div>
