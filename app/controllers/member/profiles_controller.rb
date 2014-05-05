@@ -11,7 +11,7 @@ module Member
     end
 
     def show
-      if current_user.id == params[:id].to_i
+      if user_signed_in? && current_user.id == params[:id].to_i
         redirect_to member.profiles_path
       else
         @user = Member::User.find(params[:id])

@@ -17,6 +17,7 @@ module Member
     def create
       @publication = Article::Publication.new(publication_params)
       @publication.author = current_user.id
+      @publication.author_type = current_user.role
 
       if @publication.save
         redirect_to member.profiles_path, :notice => "An article was created"
@@ -31,7 +32,8 @@ module Member
 
     def update
       @publication = Article::Publication.where(author: current_user.id).find(params[:id])
-
+      @publication.author_type = current_user.role
+      
       if @publication.update_attributes(publication_params)
         redirect_to member.profiles_path, notice: 'Successfully updated'
       else

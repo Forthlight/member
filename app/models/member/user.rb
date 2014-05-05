@@ -11,6 +11,9 @@ module Member
     # Add roles to users with the simple roles gem, configured in config/initializers/simple_roles.rb
     simple_roles
 
+    # Non-devise, non-persisted, terms must be accepted
+    validates_acceptance_of :terms, on: :create
+
     # Non-devise field validations
     validates :first_name, presence: true, length: { maximum: 20 }, format: { with: /\A[a-zA-Z]+\Z/ }
     validates :last_name, presence: true, length: { maximum: 20 }, format: { with: /\A[a-zA-Z]+\Z/ }
