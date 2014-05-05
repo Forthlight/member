@@ -28,9 +28,6 @@
         <li>
           <b>Articles</b> <span><%= @pub_count %></span>
         </li>
-        <li>
-          <b>Subscribers</b> <span>17</span>
-        </li>
       </ul>
 
       <ul>
@@ -68,7 +65,7 @@
         <div class="span4 article-thumb">
           <div class="thumb-head"><%= link_to article.title, member.publication_path(article.id) %></a></div>
           <div class="thumb-body">
-            <p><%= truncate_to_paragraph(article.content) %></p>
+            <div class="structurise"><%= truncate_to_paragraph(article.content) %></div>
           </div>
           <div class="thumb-foot"><%= link_to "Read full article", member.publication_path(article.id) %></div>
         </div>
