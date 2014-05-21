@@ -34,7 +34,7 @@ module Member
       @publication = Article::Publication.where(author: current_user.id).find(params[:id])
       @publication.author_type = current_user.role
       
-      if @publication.update_attributes(publication_params)
+      if @publication.update_attributes(publication_params) && @publication.__elasticsearch__.index_document
         redirect_to member.profiles_path, notice: 'Successfully updated'
       else
         render action: :edit, :notice => "An error occured, the article was not updated"
